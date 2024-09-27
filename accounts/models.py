@@ -44,7 +44,7 @@ class User(AbstractBaseUser):
 
     ROLE_CHOICE = (
         (VENDOR, 'Vendor'),
-        (CUSTOMER, 'customer'),
+        (CUSTOMER, 'Customer'),
     )
 
     first_name = models.CharField(max_length=50)
@@ -78,7 +78,14 @@ class User(AbstractBaseUser):
     
     def has_module_perms(self, app_Lable):
         return True
-
+    
+    def get_role(self):
+        if self.role == 1:
+            user_role = 'Vendor'
+        elif self.role == 2:
+            user_role = 'Customer'
+       
+        return user_role
 
 
 class UserProfile(models.Model):
